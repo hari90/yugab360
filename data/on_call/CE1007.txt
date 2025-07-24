@@ -1,0 +1,99 @@
+CE1007 - Customer Escalation Summary
+=====================================
+
+Customer: Reliance
+Priority: Medium
+Status: Resolved
+Created: 2024-01-27
+Escalated: 2024-01-28
+Resolved: 2024-01-30
+
+Issue Description:
+-----------------
+Customer Reliance reported performance degradation on their YugabyteDB nodes.
+The database was experiencing high CPU usage and memory pressure, leading to
+slow query response times and connection timeouts.
+
+Root Cause Analysis:
+-------------------
+1. OS/THP (Transparent Huge Pages) Issue:
+   - THP enabled causing memory fragmentation
+   - High CPU usage due to memory compaction
+   - Kernel parameter misconfiguration
+   - NUMA node allocation issues
+
+2. System Configuration:
+   - THP set to "always" instead of "madvise"
+   - Insufficient swap space configured
+   - Memory allocation causing page faults
+   - CPU scheduling issues with high load
+
+3. Impact on Database:
+   - Memory allocation delays
+   - Increased query response times
+   - Connection pool exhaustion
+   - Backup operations timing out
+
+Technical Details:
+-----------------
+- OS: RHEL 8.4 with kernel 4.18.0-305
+- THP Setting: always (should be madvise)
+- Memory: 256GB with 8GB swap
+- CPU: 32 cores with high utilization
+- NUMA: 4 nodes with uneven allocation
+
+Impact Assessment:
+-----------------
+- Business Impact: Medium - Performance degradation affecting operations
+- Affected Users: ~5,000 concurrent users
+- Performance Impact: 200% increase in query response times
+- Operational Risk: Backup failures and timeouts
+
+Action Plan:
+------------
+1. Immediate (0-4 hours):
+   - Disable THP and restart database nodes
+   - Optimize kernel parameters
+   - Add memory monitoring
+
+2. Short-term (4-24 hours):
+   - Configure proper swap space
+   - Optimize NUMA node allocation
+   - Implement memory monitoring
+
+3. Long-term (1-7 days):
+   - Document OS optimization best practices
+   - Implement automated health checks
+   - Add performance monitoring
+
+Resolution Summary:
+------------------
+- THP disabled and kernel parameters optimized
+- Memory allocation improved
+- Performance returned to normal levels
+- Monitoring implemented for early detection
+
+Current Status:
+---------------
+- Issue fully resolved
+- Performance restored to normal
+- Monitoring in place
+- Customer satisfied with resolution
+
+Customer Sentiment:
+------------------
+- Customer was concerned about performance issues
+- Appreciated the quick identification of OS-level issue
+- Satisfied with the comprehensive solution
+- Overall sentiment: Satisfied and confident in stability
+
+Next Steps:
+-----------
+1. Monitor performance for 1 week
+2. Share OS optimization best practices
+3. Schedule follow-up review
+4. Close CE after verification period
+
+Escalation Level: Level 1
+Assigned Engineer: Senior System Engineer
+Customer Contact: Infrastructure Lead - Reliance 

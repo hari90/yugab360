@@ -1,0 +1,99 @@
+CE1005 - Customer Escalation Summary
+=====================================
+
+Customer: Ironwood
+Priority: Low
+Status: Resolved
+Created: 2024-01-24
+Escalated: 2024-01-24
+Resolved: 2024-01-24
+
+Issue Description:
+-----------------
+Customer Ironwood reported that their application was unable to connect to YugabyteDB.
+The application was throwing connection timeout errors and database operations were failing.
+After investigation, it was determined to be a customer configuration error.
+
+Root Cause Analysis:
+-------------------
+1. Customer User Error:
+   - Incorrect connection string configuration
+   - Wrong database port specified in application
+   - Firewall blocking database connections
+   - Application using outdated connection parameters
+
+2. Configuration Issues:
+   - Connection string pointing to wrong host
+   - Port 5433 used instead of 5432
+   - Missing SSL configuration parameters
+   - Incorrect database name in connection string
+
+3. Application Configuration:
+   - Spring Boot application with JPA
+   - Connection pool size set to 1 (too small)
+   - No connection retry logic implemented
+   - Missing connection timeout settings
+
+Technical Details:
+-----------------
+- Application: Spring Boot with JPA
+- Database: YugabyteDB 2.18.1.0
+- Connection Pool: HikariCP with 1 connection
+- Expected Port: 5432, Configured: 5433
+- SSL: Required but not configured
+
+Impact Assessment:
+-----------------
+- Business Impact: Low - Development environment only
+- Affected Users: 5 developers
+- Development Delay: 2 days of troubleshooting
+- No production impact
+
+Action Plan:
+------------
+1. Immediate (0-2 hours):
+   - Correct connection string configuration
+   - Update application.properties with correct settings
+   - Test database connectivity
+
+2. Short-term (2-4 hours):
+   - Implement proper connection pooling
+   - Add connection retry logic
+   - Configure SSL properly
+
+3. Long-term (1-2 days):
+   - Document connection best practices
+   - Implement connection monitoring
+   - Add configuration validation
+
+Resolution Summary:
+------------------
+- Connection string corrected
+- Application successfully connected to database
+- Connection pooling configured properly
+- SSL configuration implemented
+
+Current Status:
+---------------
+- Issue fully resolved
+- Application running normally
+- Configuration documented
+- Customer satisfied with resolution
+
+Customer Sentiment:
+------------------
+- Customer was initially frustrated with connection issues
+- Appreciated the quick identification of configuration error
+- Satisfied with the educational support provided
+- Overall sentiment: Satisfied and grateful for guidance
+
+Next Steps:
+-----------
+1. Share connection configuration best practices
+2. Provide YugabyteDB connection documentation
+3. Schedule follow-up training session
+4. Close CE after verification
+
+Escalation Level: Level 1
+Assigned Engineer: Support Engineer
+Customer Contact: Developer Lead - Ironwood 

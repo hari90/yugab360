@@ -1,0 +1,99 @@
+CE1009 - Customer Escalation Summary
+=====================================
+
+Customer: Crestone
+Priority: Medium
+Status: Resolved
+Created: 2024-02-02
+Escalated: 2024-02-03
+Resolved: 2024-02-05
+
+Issue Description:
+-----------------
+Customer Crestone reported slow query performance on their YugabyteDB cluster.
+Specific queries were taking longer than expected, affecting their reporting system.
+The issue was related to query optimization and index usage.
+
+Root Cause Analysis:
+-------------------
+1. YugabyteDB Core Issue:
+   - Missing indexes on frequently queried columns
+   - Query planner choosing suboptimal execution plans
+   - Statistics not updated on large tables
+   - Partition pruning not working effectively
+
+2. Query Performance:
+   - Reporting queries taking 10-30 seconds (normally 2-5s)
+   - Aggregation queries experiencing delays
+   - Index scans not being utilized properly
+   - Query cache not working efficiently
+
+3. Database Configuration:
+   - 5-node cluster with RF=3
+   - Large tables with outdated statistics
+   - Missing composite indexes
+   - Query timeout set too high
+
+Technical Details:
+-----------------
+- Affected Tables: sales_data, customer_metrics
+- Missing Indexes: 3 composite indexes identified
+- Statistics: Last updated 30 days ago
+- Query Cache: 0% hit rate
+- Partition Strategy: Date-based partitioning
+
+Impact Assessment:
+-----------------
+- Business Impact: Medium - Reporting delays affecting operations
+- Affected Users: ~100 business analysts
+- Performance Impact: 300% increase in query times
+- Operational Risk: Low - no critical failures
+
+Action Plan:
+------------
+1. Immediate (0-4 hours):
+   - Create missing composite indexes
+   - Update table statistics
+   - Optimize query timeout settings
+
+2. Short-term (4-24 hours):
+   - Implement query monitoring
+   - Add query performance alerts
+   - Optimize partition strategy
+
+3. Long-term (1-7 days):
+   - Implement automated statistics updates
+   - Add query performance dashboard
+   - Document query optimization best practices
+
+Resolution Summary:
+------------------
+- Missing indexes created successfully
+- Statistics updated on all tables
+- Query performance improved by 80%
+- Monitoring implemented
+
+Current Status:
+---------------
+- Issue fully resolved
+- Query performance restored
+- Monitoring in place
+- Customer satisfied with resolution
+
+Customer Sentiment:
+------------------
+- Customer was patient during investigation
+- Appreciated the detailed performance analysis
+- Satisfied with the comprehensive solution
+- Overall sentiment: Satisfied and confident
+
+Next Steps:
+-----------
+1. Monitor query performance for 1 week
+2. Share query optimization best practices
+3. Schedule follow-up review
+4. Close CE after verification
+
+Escalation Level: Level 1
+Assigned Engineer: Database Performance Engineer
+Customer Contact: Data Analytics Lead - Crestone 

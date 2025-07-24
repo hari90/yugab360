@@ -1,0 +1,69 @@
+CE1167 - Customer Escalation Summary
+=====================================
+
+Customer: Weston
+Priority: Medium
+Status: In Progress
+Created: 2024-07-05
+Escalated: 2024-05-16
+
+
+Issue Description:
+-----------------
+Customer Weston reported network connectivity issues between application servers and YugabyteDB cluster.
+
+Root Cause Analysis:
+-------------------
+1. Network Issue:
+   - Technical details specific to Network
+   - Configuration problems identified
+   - Performance impact documented
+
+2. Impact Assessment:
+   - Business impact evaluated
+   - User experience affected
+   - SLA implications assessed
+
+3. Technical Details:
+   - Cluster configuration issues
+   - Performance metrics affected
+   - Monitoring gaps identified
+
+Action Plan:
+------------
+1. Immediate (0-4 hours):
+   - Emergency response actions
+   - Quick fixes implemented
+   - Monitoring enhanced
+
+2. Short-term (4-24 hours):
+   - Root cause resolution
+   - Performance optimization
+   - Documentation updates
+
+3. Long-term (1-7 days):
+   - Preventive measures
+   - Best practices implementation
+   - Training and education
+
+Current Status:
+---------------
+- Issue in progress
+- Ongoing investigation
+- Customer concerned
+
+Customer Sentiment:
+------------------
+- Customer was frustrated with the ongoing issues and support experience.
+- Overall sentiment: Dissatisfied and concerned
+
+Next Steps:
+-----------
+1. Continue investigation
+2. Implement fixes
+3. Provide updates
+4. Escalate if needed
+
+Escalation Level: Level 2
+Assigned Engineer: Senior System Engineer
+Customer Contact: Technical Lead - Weston

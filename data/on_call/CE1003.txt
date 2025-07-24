@@ -1,0 +1,95 @@
+CE1003 - Customer Escalation Summary
+=====================================
+
+Customer: Corbin
+Priority: Medium
+Status: Resolved
+Created: 2024-01-20
+Escalated: 2024-01-21
+Resolved: 2024-01-23
+
+Issue Description:
+-----------------
+Customer Corbin reported YBA (YugabyteDB Anywhere) control plane unavailability.
+The YBA UI was not accessible and API endpoints were returning 503 errors.
+This affected their ability to monitor and manage their database clusters.
+
+Root Cause Analysis:
+-------------------
+1. YBA Control Plane Issue:
+   - YBA service crashed due to memory exhaustion
+   - JVM heap size insufficient for current workload
+   - High number of concurrent API requests overwhelming the service
+
+2. Impact on Operations:
+   - Unable to access cluster monitoring
+   - Backup operations could not be initiated
+   - User management functions unavailable
+
+3. Cluster Configuration:
+   - 5-node cluster managed by YBA
+   - YBA running on separate management server
+   - 8GB RAM allocated to YBA (insufficient)
+
+Technical Details:
+-----------------
+- YBA Version: 2.18.1.0
+- Memory Usage: 95% of allocated heap
+- Concurrent Users: 50+ during peak hours
+- Backup Jobs: 15 pending due to YBA unavailability
+
+Impact Assessment:
+-----------------
+- Business Impact: Medium - Operational monitoring affected
+- Affected Users: 25 database administrators
+- Operational Risk: Backup schedules delayed
+- SLA Impact: Minor - no customer-facing impact
+
+Action Plan:
+------------
+1. Immediate (0-4 hours):
+   - Restart YBA service with increased memory allocation
+   - Implement YBA health monitoring
+   - Add memory usage alerts
+
+2. Short-term (4-24 hours):
+   - Increase YBA JVM heap size to 16GB
+   - Optimize YBA database queries
+   - Implement connection pooling for YBA
+
+3. Long-term (1-7 days):
+   - Upgrade YBA to latest version
+   - Implement YBA high availability
+   - Document YBA maintenance procedures
+
+Resolution Summary:
+------------------
+- YBA service restarted with increased memory
+- Heap size increased to 16GB
+- Monitoring and alerting implemented
+- Service stability restored
+
+Current Status:
+---------------
+- Issue fully resolved
+- YBA performance improved
+- Monitoring in place
+- Customer satisfied with resolution
+
+Customer Sentiment:
+------------------
+- Customer was concerned about operational visibility
+- Appreciated quick restoration of YBA access
+- Satisfied with the comprehensive solution
+- Overall sentiment: Satisfied and confident
+
+Next Steps:
+-----------
+1. Monitor YBA performance for 1 week
+2. Schedule YBA upgrade planning
+3. Share monitoring best practices
+4. Close CE after verification period
+
+Escalation Level: Level 1
+Assigned Engineer: Support Engineer
+Customer Contact: DevOps Lead - Corbin 

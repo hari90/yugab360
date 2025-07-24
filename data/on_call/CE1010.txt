@@ -1,0 +1,99 @@
+CE1010 - Customer Escalation Summary
+=====================================
+
+Customer: Solstice
+Priority: Low
+Status: Resolved
+Created: 2024-02-06
+Escalated: 2024-02-06
+Resolved: 2024-02-08
+
+Issue Description:
+-----------------
+Customer Solstice reported that their YugabyteDB cluster was experiencing
+unexpected data loss and corruption. After investigation, it was determined
+to be caused by customer misconfiguration of replication factor and backup settings.
+
+Root Cause Analysis:
+-------------------
+1. Customer User Error:
+   - Replication factor set to 1 instead of 3
+   - Backup retention policy disabled
+   - Manual data deletion without proper procedures
+   - Incorrect table schema modifications
+
+2. Configuration Issues:
+   - RF=1 causing single point of failure
+   - No backups configured for critical tables
+   - Data deletion without proper validation
+   - Schema changes without testing
+
+3. Data Management:
+   - Critical tables dropped accidentally
+   - Backup jobs disabled by customer
+   - No disaster recovery procedures
+   - Lack of data validation processes
+
+Technical Details:
+-----------------
+- Cluster: 3-node with RF=1 (should be RF=3)
+- Affected Tables: user_profiles, transaction_history
+- Backup Status: Disabled for 2 weeks
+- Data Loss: ~10,000 records
+- Recovery Point: 2 weeks ago
+
+Impact Assessment:
+-----------------
+- Business Impact: Medium - Data loss affecting operations
+- Affected Users: ~1,000 users with incomplete data
+- Data Loss: 10,000+ records
+- Recovery Time: 2 weeks of data to restore
+
+Action Plan:
+------------
+1. Immediate (0-4 hours):
+   - Change replication factor to RF=3
+   - Enable backup jobs immediately
+   - Assess data recovery options
+
+2. Short-term (4-24 hours):
+   - Restore data from available backups
+   - Implement data validation procedures
+   - Configure proper backup retention
+
+3. Long-term (1-7 days):
+   - Document data management procedures
+   - Implement change control processes
+   - Add data protection monitoring
+
+Resolution Summary:
+------------------
+- Replication factor changed to RF=3
+- Backup jobs enabled and configured
+- Data recovery procedures implemented
+- Change control processes established
+
+Current Status:
+---------------
+- Issue resolved with data recovery
+- Proper configuration implemented
+- Monitoring and procedures in place
+- Customer educated on best practices
+
+Customer Sentiment:
+------------------
+- Customer was initially defensive about the error
+- Frustrated with the data loss and recovery process
+- Appreciated the educational support provided
+- Overall sentiment: Dissatisfied but understanding
+
+Next Steps:
+-----------
+1. Complete data recovery process
+2. Provide data management training
+3. Implement change control procedures
+4. Schedule follow-up review
+
+Escalation Level: Level 1
+Assigned Engineer: Support Engineer
+Customer Contact: Database Administrator - Solstice 
